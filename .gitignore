@@ -1,0 +1,7 @@
+Debug
+Release
+*.vcproj
+*.user
+*.filter
+terminal.png
+savegame
