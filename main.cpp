@@ -471,7 +471,8 @@ void message(string new_msg, const TCODColor &color) {
 // GUI: zobrazí menu s hlavièkou header, možnostmi options a šíøkou width
 int menu(string header, TCODList<string> &options, int width) {
 	int header_height = con->getHeightLeftRect(0,0,width,0,header.c_str()); // poèet øádkù hlavièky
-	int height = options.size() + header_height + 1; // výška menu
+	if (header == "") header_height = 0;
+	int height = options.size() + header_height + 2; // výška menu
 	TCODConsole *window = new TCODConsole(width,height); // pomocná konzole pro menu
 	window->setForegroundColor(TCODColor::white);
 	window->printLeftRect(0,0,width,0,TCOD_BKGND_NONE,header.c_str());
@@ -1075,8 +1076,16 @@ void main_menu() {
 	o.push("Play a new game");
 	o.push("Continue last game");
 	o.push("Quit");
+	TCODImage *pix = new TCODImage("dungeon.png");
+	TCODConsole *window = new TCODConsole(24,5);
+	window->setBackgroundColor(TCODColor::black);
+	window->setForegroundColor(TCODColor::white);
+	window->printCenter(11,1,TCOD_BKGND_NONE,"Yet Another Roguelike");
+	window->printCenter(11,3,TCOD_BKGND_NONE,"by The Martin");
 	while(!TCODConsole::isWindowClosed()) {
 		TCODConsole::root->clear();
+		pix->blit2x(TCODConsole::root,0,0);
+		TCODConsole::blit(window,0,0,23,5,TCODConsole::root,SCREEN_WIDTH/2-12,10,1.0,0.7);
 		int choice = menu("",o,24);
 		if (choice == 0) { // nová hra
 			new_game();
