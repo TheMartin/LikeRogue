@@ -3,5 +3,5 @@ Release
 *.vcproj
 *.user
 *.filter
-terminal.png
+*.png
 savegame
