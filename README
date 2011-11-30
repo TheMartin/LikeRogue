@@ -18,3 +18,7 @@ G for grab
 I for inventory
 L to look at things
 alt-enter to toggle fullscreen
+
+the .png files need to be in the same directory as the program to work
+
+launch with a parameter (any parameter) to use the default 8x8 terminal font
